@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+         /* Primary (teal) scale - shades from 50 -> 800. Based on Tailwind teal palette. */
+    --color-primary-50:  #f0fdfa;
+    --color-primary-100: #ccfbf1;
+    --color-primary-200: #99f6e4;
+    --color-primary-300: #5eead4;
+    --color-primary-400: #2dd4bf;
+    --color-primary-500: #14b8a6; /* default */
+    --color-primary-600: #0d9488;
+    --color-primary-700: #0f766e;
+    --color-primary-800: #115e59;
+
+    /* Convenience alias: default primary color (500) */
+    --color-primary: var(--color-primary-500);
+
+    /* Secondary (kept as before) */
+    --color-secondary: #2563eb; /* indigo-600 */
+    --color-secondary-600: #1e40af; /* darker */
+}
+
+/* Small helper utility classes for cases where Tailwind utilities aren't convenient */
+.bg-primary { background-color: var(--color-primary) !important; }
+.text-primary { color: var(--color-primary) !important; }
+.border-primary { border-color: var(--color-primary) !important; }
+
+.bg-secondary { background-color: var(--color-secondary) !important; }
+.text-secondary { color: var(--color-secondary) !important; }
+.border-secondary { border-color: var(--color-secondary) !important; }
+
