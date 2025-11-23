@@ -66,11 +66,17 @@ php artisan migrate --seed
 php artisan serve
 ```
 
+7. Jalankan lagi di powershell yang berbeda
+
+```pwsh
+npm run dev
+```
+
 Buka `http://127.0.0.1:8000` atau `APP_URL` yang sudah dikonfigurasi.
 
 ---
 
-## Opsi: Menghasilkan PDF di server (opsional)
+## Langkah selanjutnya untuk generate PDF
 
 Jika Anda ingin server menghasilkan PDF untuk tiket, tambahkan paket berikut:
 
@@ -103,7 +109,7 @@ API (dilindungi Sanctum):
 
 ## Kredensial Contoh (Admin & Passenger)
 
-Untuk mempermudah pengujian, seeder proyek biasanya membuat user contoh. Jika Anda membutuhkan akun cepat untuk login selama pengembangan, gunakan kredensial sampel berikut (jika seeder berbeda, sesuaikan dengan data di `database/seeders`):
+Untuk mempermudah pengujian, seeder proyek biasanya membuat user contoh. Jika Anda membutuhkan akun cepat untuk login selama pengembangan, gunakan kredensial sampel berikut (jika seeder berbeda, sesuaikan dengan data di `database/seeders`) jangan lupa untuk php artisan db:seed terlebih dahulu:
 
 
 - Admin:
@@ -177,14 +183,6 @@ vendor/bin/pest
 
 - Gunakan `npm run dev` untuk pengembangan frontend dengan hot-reload.
 - Gunakan `php artisan migrate:fresh --seed` untuk mereset database selama pengembangan (opsi destruktif).
-
----
-
-## Kontribusi
-
-- Ikuti gaya kode yang ada; tambahkan test untuk logika backend bila memungkinkan.
-
----
 
 ## Lisensi
 
