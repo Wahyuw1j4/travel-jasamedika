@@ -71,6 +71,11 @@ onMounted(() => {
     if (typeof window !== 'undefined') currentPath.value = window.location.pathname
 })
 
+// update currentPath whenever Inertia page props change (reactive navigation)
+watch(() => page.props, () => {
+    if (typeof window !== 'undefined') currentPath.value = window.location.pathname
+})
+
 // Build menu based on authenticated user role
 const menu = computed(() => getMenu(page.props.auth?.user ?? null))
 
@@ -79,7 +84,9 @@ function closeMobile() {
 }
 
 function isActive(route) {
-    if (!currentPath.value) return false
+    if (!currentPath.value || !route) return false
+    // special case: root route should match exact only
+    if (route === '/') return currentPath.value === '/'
     return currentPath.value === route || currentPath.value.startsWith(route)
 }
 </script>

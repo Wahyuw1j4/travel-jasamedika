@@ -18,7 +18,7 @@ README ini berisi petunjuk pemasangan, penggunaan, rute penting, serta catatan u
 - PHP 8.2 atau lebih baru
 - Composer
 - Node.js (disarankan v16+) dan `npm` atau `pnpm`
-- Database (MySQL / MariaDB / SQLite)
+- Database (postgree)
 
 Perintah di bawah memakai sintaks PowerShell pada Windows; sesuaikan bila menggunakan shell lain.
 
@@ -100,6 +100,26 @@ API (dilindungi Sanctum):
 - `POST /api/payments` — Unggah bukti pembayaran (multipart/form-data).
 
 ---
+
+## Kredensial Contoh (Admin & Passenger)
+
+Untuk mempermudah pengujian, seeder proyek biasanya membuat user contoh. Jika Anda membutuhkan akun cepat untuk login selama pengembangan, gunakan kredensial sampel berikut (jika seeder berbeda, sesuaikan dengan data di `database/seeders`):
+
+
+- Admin:
+	- Email: `wahyuwijaya@gmail.com`
+	- Password: `wahyu123`
+
+- Passenger (pengguna biasa):
+	- Email: `penumpang1@gmail.com`
+	- Password: `penumpang123`
+
+- Passenger (pengguna biasa):
+	- Email: `penumpang2@gmail.com`
+	- Password: `penumpang123`
+
+Catatan: Kredensial di atas adalah contoh; pastikan menggantinya di lingkungan produksi. Jika seeder Anda menggunakan email/password yang berbeda, lihat file `database/seeders/UserSeeder.php` untuk nilai yang sebenarnya.
+
 
 ## Catatan Frontend
 
