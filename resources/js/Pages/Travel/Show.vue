@@ -56,7 +56,10 @@
             <div class="mt-6">
               <div class="flex items-center justify-between">
                 <div class="text-xs text-slate-400">Kuota</div>
-                <div class="text-xs text-slate-500">{{ (travel.bookings || []).filter(b => b.status !== 'cancelled').length }} / {{ travel.quota_total }}</div>
+                <div class="text-xs text-slate-500">
+                  {{ (travel.bookings || []).reduce((sum, b) => sum + (b.status !== 'cancelled' ? (Array.isArray(b.details) ? b.details.length : 0) : 0), 0) }} / {{ travel.quota_total }}
+                </div>
+              
               </div>
               <div class="w-full bg-slate-100 h-3 rounded-full mt-2 overflow-hidden">
                 <div class="h-3 bg-emerald-500" :style="{ width: progressPercent + '%' }"></div>
@@ -76,7 +79,6 @@
               <template v-if="isAdmin">
                 <Button class="w-full" label="Edit" @click="editTravel" />
                 <Button class="w-full p-button-danger" label="Hapus" @click="deleteTravel" />
-                <Button class="w-full p-button-secondary" label="Export CSV" @click="exportCsv" />
               </template>
               <template v-if="!isAdmin && bookings && bookings.length === 0">
                 <Button class="w-full p-button-primary" label="Pesan Sekarang" @click="openOrderModal" />
@@ -347,7 +349,7 @@ onMounted(() => {
 const progressPercent = computed(() => {
   const total = travel.quota_total || 0
   if (total <= 0) return 0
-  const used = (travel.bookings || []).filter(b => b.status !== 'cancelled').length
+  const used = (travel.bookings || []).reduce((sum, b) => sum + (b.status !== 'cancelled' ? (Array.isArray(b.details) ? b.details.length : 0) : 0), 0)
   return Math.round((used / total) * 100)
 })
 
@@ -547,18 +549,6 @@ async function deleteTravel() {
 
 function editTravel() {
   router.get(`/jadwal-travel/${travel.id}/edit`)
-}
-
-function exportCsv() {
-  router.get(`/jadwal-travel/${travel.id}/export`)
-}
-
-function bookNow() {
-  router.get(`/jadwal-travel/${travel.id}/book`)
-}
-
-function goBack() {
-  router.visit('/jadwal-travel')
 }
 
 function downloadTicket() {
